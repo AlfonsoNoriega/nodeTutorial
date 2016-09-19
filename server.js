@@ -5,14 +5,15 @@
 var http = require("http");
 var url = require("url");
 
-function start(route){
+function start(route, handle){
     function onRequest( request, response){
 
         // This will allow us to amp requests to our request handles based on the URL path using
         // router.js
     var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
-    route(pathname);
+
+    route(handle,pathname);
 
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
